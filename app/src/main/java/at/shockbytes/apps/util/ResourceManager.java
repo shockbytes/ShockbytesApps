@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -76,25 +77,27 @@ public class ResourceManager {
             }
         }
         return revision;
-
     }
 
     public static AppsApk extractInfosFromApk(@NonNull Context context, String apkPath) {
 
-        PackageManager pm = context.getPackageManager();
-        PackageInfo pi = pm.getPackageArchiveInfo(apkPath, 0);
+        if (apkPath != null) {
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageArchiveInfo(apkPath, 0);
 
-        if (pi != null) {
-            pi.applicationInfo.sourceDir = apkPath;
-            pi.applicationInfo.publicSourceDir = apkPath;
+            if (pi != null) {
+                pi.applicationInfo.sourceDir = apkPath;
+                pi.applicationInfo.publicSourceDir = apkPath;
 
-            Drawable icon = pi.applicationInfo.loadIcon(pm);
-            String appName = (String)pi.applicationInfo.loadLabel(pm);
-            String packageName = pi.applicationInfo.packageName;
+                Drawable icon = pi.applicationInfo.loadIcon(pm);
+                String appName = (String)pi.applicationInfo.loadLabel(pm);
+                String packageName = pi.applicationInfo.packageName;
 
-            return new AppsApk(appName, icon, packageName, isPackageInstalled(context, packageName));
+                return new AppsApk(appName, icon, packageName, isPackageInstalled(context, packageName));
+            } else {
+                Log.wtf("Apps", "Info null for " + apkPath);
+            }
         }
-
         return null;
     }
 

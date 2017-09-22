@@ -66,15 +66,7 @@ public class MainFragment extends Fragment {
     }
 
     public void setApps(List<LocalShockApp> apps) {
-        setData(apps);
-    }
-
-    private void setData(List<LocalShockApp> apps) {
         appsAdapter.setData(apps);
-    }
-
-    public void addApp(LocalShockApp app) {
-        appsAdapter.addEntityAtLast(app);
     }
 
     private void setupRecyclerView() {

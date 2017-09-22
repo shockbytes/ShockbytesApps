@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import at.shockbytes.apps.R;
@@ -35,8 +36,25 @@ public class AppsAdapter extends BaseAdapter<LocalShockApp> {
     }
 
     @Override
+    public void setData(List<LocalShockApp> data) {
+        super.setData(makeDataSanityCheck(data));
+    }
+
+    @Override
     public BaseAdapter<LocalShockApp>.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(inflater.inflate(R.layout.item_app, parent, false));
+    }
+
+    public List<LocalShockApp> makeDataSanityCheck(List<LocalShockApp> data) {
+
+        List<LocalShockApp> checked = new ArrayList<>();
+        for (LocalShockApp app : data) {
+            AppsApk apk = ResourceManager.extractInfosFromApk(context, app.getApkPath());
+            if (apk != null) {
+                checked.add(app);
+            }
+        }
+        return checked;
     }
 
     class ViewHolder extends BaseAdapter<LocalShockApp>.ViewHolder {
@@ -66,36 +84,32 @@ public class AppsAdapter extends BaseAdapter<LocalShockApp> {
             content = app;
             installedRevision = prefs.getInt(content.getAppName(), -1);
 
-            if (app.getApkPath() != null) {
-                AppsApk apk = ResourceManager.extractInfosFromApk(context, app.getApkPath());
-                if (apk != null) {
-                    appsApk = apk;
+            AppsApk apk = ResourceManager.extractInfosFromApk(context, app.getApkPath());
+            if (apk != null) {
+                appsApk = apk;
 
-                    txtAppname.setText(appsApk.appName);
-                    imgViewIcon.setImageDrawable(appsApk.icon);
+                txtAppname.setText(appsApk.appName);
+                imgViewIcon.setImageDrawable(appsApk.icon);
 
-                    double mb = ResourceManager.roundDoubleWithDigits(new File(app.getApkPath()).length()/1024.0/1024.0, 2);
-                    String info = context.getString(R.string.app_info, app.getRevision(), String.valueOf(mb));
-                    txtInfo.setText(info);
+                double mb = ResourceManager.roundDoubleWithDigits(new File(app.getApkPath()).length() / 1024.0 / 1024.0, 2);
+                String info = context.getString(R.string.app_info, app.getRevision(), String.valueOf(mb));
+                txtInfo.setText(info);
 
-                    int btnTextId;
-                    if (installedRevision == content.getRevision()) {
+                int btnTextId;
+                if (installedRevision == content.getRevision()) {
 
-                        if (appsApk.isInstalled) {
-                            btnTextId = R.string.open;
-                        } else {
-                            btnTextId = R.string.install;
-                            // Apps was uninstalled in meantime
-                            prefs.edit().putInt(content.getAppName(), -1).apply();
-                        }
-
+                    if (appsApk.isInstalled) {
+                        btnTextId = R.string.open;
                     } else {
-                        btnTextId = appsApk.isInstalled ? R.string.update : R.string.install;
+                        btnTextId = R.string.install;
+                        // Apps was uninstalled in meantime
+                        prefs.edit().putInt(content.getAppName(), -1).apply();
                     }
-                    btnInstall.setText(btnTextId);
+
+                } else {
+                    btnTextId = appsApk.isInstalled ? R.string.update : R.string.install;
                 }
-            } else {
-                deleteEntity(app);
+                btnInstall.setText(btnTextId);
             }
         }
 
