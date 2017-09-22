@@ -1,0 +1,4 @@
+/build
+
+# Do not share information about Firebase project
+google-services.json

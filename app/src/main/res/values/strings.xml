@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Apps</string>
+
+    <string name="app_info">Revision %1$d &#8226; %2$s MB</string>
+    <string name="update">Aktualisieren</string>
+    <string name="install">Installieren</string>
+    <string name="open">Öffnen</string>
+    <string name="menu_main_sync">Sync FCM token</string>
+    <string name="app_version">1.0</string>
+    <string name="title_activity_launch">LaunchActivity</string>
+    <string name="settings">Einstellungen</string>
+    <string name="prefs_category_about">Über</string>
+    <string name="prefs_developer_summary">Shockbytes Studio © 2017</string>
+    <string name="prefs_developer_title">Entwickler</string>
+    <string name="prefs_version_title">Version</string>
+    <string name="shockbytes_apps">Shockbytes Apps</string>
+    <string name="activity_launch_description">Mit Fingerprint entsperren</string>
+    <string name="settings_label">Shockbytes Apps</string>
+    <string name="prefs_sync_fcm_key">sync_fcm_key</string>
+
+</resources>

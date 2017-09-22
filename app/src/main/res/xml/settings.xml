@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory android:title="Synchronization">
+
+        <Preference android:title="Synchronize FCM device token"
+            android:key="@string/prefs_sync_fcm_key"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefs_category_about">
+
+        <Preference
+            android:summary="@string/prefs_developer_summary"
+            android:title="@string/prefs_developer_title" />
+
+        <Preference
+            android:summary="@string/app_version"
+            android:title="@string/prefs_version_title" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="12dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/item_app_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/item_app_txt_appname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_app_image"
+        android:layout_marginEnd="4dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/item_app_image"
+        android:layout_toLeftOf="@+id/item_app_btn_install"
+        android:layout_toRightOf="@+id/item_app_image"
+        android:layout_toStartOf="@+id/item_app_btn_install"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/item_app_txt_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/item_app_txt_appname"
+        android:layout_alignStart="@+id/item_app_txt_appname"
+        android:layout_below="@+id/item_app_txt_appname"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_toEndOf="@+id/item_app_image"
+        android:layout_toLeftOf="@+id/item_app_btn_install"
+        android:layout_toRightOf="@+id/item_app_image"
+        android:layout_toStartOf="@+id/item_app_btn_install"
+        android:textColor="@android:color/tertiary_text_light"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/item_app_btn_install"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/apps_button"
+        android:paddingEnd="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingStart="12dp"
+        android:text="Aktualisieren"
+        android:textColor="@color/apps_button" />
+
+</RelativeLayout>
